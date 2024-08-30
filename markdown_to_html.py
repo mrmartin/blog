@@ -61,7 +61,7 @@ for filename, mod_time in md_files_with_dates:
             </article>
             <footer class="my-4">
                 <p>Written on: {formatted_date}</p>
-                <p>&copy; 2024 Your Name</p>
+                <p>&copy; 2024 Zero One</p>
             </footer>
         </div>
     </body>
@@ -76,13 +76,13 @@ for filename, mod_time in md_files_with_dates:
 index_html_content = f"""
 <html>
 <head>
-    <title>Index of Markdown Files</title>
+    <title>Zero One's Blog</title>
     {bootstrap_css}
 </head>
 <body>
     <div class="container">
         <header class="my-4">
-            <h1>Index of Converted Markdown Files</h1>
+            <h1>Index of Articles</h1>
         </header>
         <ul class="list-group">
 """
@@ -95,7 +95,7 @@ for html_file, formatted_date in html_files_with_dates:
 index_html_content += """
         </ul>
         <footer class="my-4">
-            <p>&copy; 2024 Your Name</p>
+            <p>&copy; 2024 Zero One</p>
         </footer>
     </div>
 </body>
