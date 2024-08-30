@@ -2,16 +2,11 @@
 
 # Define an array of topics
 topics=(
-    "The Impact of Quantum Computing on Cryptography"
-    "Ethical Implications of AI in Healthcare"
-    "The Role of Renewable Energy in Mitigating Climate Change"
-    "Pros and Cons of Remote Work in the Tech Industry"
-    "The Future of Autonomous Vehicles in Urban Environments"
-    "Challenges and Opportunities of Colonizing Mars"
-    "The Influence of Social Media on Public Opinion and Political Movements"
-    "Should We Fear AI Becoming Superintelligent?"
-    "The Economic Impact of Universal Basic Income (UBI)"
-    "Genetic Editing: The Promise and Perils of CRISPR Technology"
+    "The Role of Dark Matter in Galaxy Formation"
+    "Quantum Entanglement and Its Implications for Communication"
+    "Philosophical Implications of the Multiverse Theory"
+    "The Economics of Climate Change and Carbon Pricing"
+    "AI Ethics: The Challenges of Autonomous Decision-Making"
 )
 
 # Python script to generate article
@@ -32,3 +27,8 @@ for topic in "${topics[@]}"; do
 done
 
 echo "All topics processed."
+
+./markdown_to_html.py
+git add *.html
+git commit -m "new articles"
+git push
