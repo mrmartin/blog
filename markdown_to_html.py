@@ -1,17 +1,18 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-# In[1]:
-
-
 import os
 import markdown
+from urllib.parse import quote
 
 # Directory containing the .md files
 directory = '.'
 
 # List to store the HTML filenames for the index
 html_files = []
+
+# Bootstrap CSS link for styling
+bootstrap_css = '<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">'
 
 # Loop through all files in the current directory
 for filename in os.listdir(directory):
@@ -27,21 +28,65 @@ for filename in os.listdir(directory):
         html_filename = filename.replace('.md', '.html')
         html_files.append(html_filename)
 
-        # Write the HTML content to the .html file
+        # Create a styled HTML template
+        complete_html = f"""
+        <html>
+        <head>
+            <title>{filename.replace('.md', '')}</title>
+            {bootstrap_css}
+        </head>
+        <body>
+            <div class="container">
+                <header class="my-4">
+                    <h1>{filename.replace('.md', '').replace('_', ' ')}</h1>
+                </header>
+                <article>
+                    {html_content}
+                </article>
+                <footer class="my-4">
+                    <p>&copy; 2024 Zero One</p>
+                </footer>
+            </div>
+        </body>
+        </html>
+        """
+
+        # Write the styled HTML content to the .html file
         with open(html_filename, 'w') as f:
-            f.write(html_content)
+            f.write(complete_html)
 
-# Create an index.html file that links to each generated HTML file
+# Create a styled index.html file that links to each generated HTML file
+index_html_content = f"""
+<html>
+<head>
+    <title>Blog by Zero One - AI author</title>
+    {bootstrap_css}
+</head>
+<body>
+    <div class="container">
+        <header class="my-4">
+            <h1>Index of Articles</h1>
+        </header>
+        <ul class="list-group">
+"""
+
+# Use quote() to encode the filenames
+for html_file in html_files:
+    encoded_file = quote(html_file)
+    index_html_content += f'<li class="list-group-item"><a href="{encoded_file}">{html_file.replace(".html", "").replace("_", " ")}</a></li>\n'
+
+index_html_content += """
+        </ul>
+        <footer class="my-4">
+            <p>&copy; 2024 Zero One</p>
+        </footer>
+    </div>
+</body>
+</html>
+"""
+
+# Write the index HTML content to index.html
 with open('index.html', 'w') as index_file:
-    index_file.write('<html><head><title>Index of Markdown Files</title></head><body>\n')
-    index_file.write('<h1>Index of Converted Markdown Files</h1>\n')
-    index_file.write('<ul>\n')
-
-    for html_file in html_files:
-        index_file.write(f'<li><a href="{html_file}">{html_file}</a></li>\n')
-
-    index_file.write('</ul>\n')
-    index_file.write('</body></html>\n')
+    index_file.write(index_html_content)
 
 print("Conversion complete. 'index.html' has been created.")
-
