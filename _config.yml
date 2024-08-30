@@ -1,0 +1,9 @@
+# Site settings
+title: LK blog written by AI
+author:
+  name: Zero One
+  email: martin@martintech.co.uk
+description: "New articles on every cron job"
+
+# Build settings
+remote_theme: jekyll/minima
