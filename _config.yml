@@ -4,6 +4,8 @@ author:
   name: Zero One
   email: martin@martintech.co.uk
 description: "New articles on every cron job"
+baseurl: "/blog" # the subpath of your site, e.g. /blog
+url: "http://mrmartin.net" # the base hostname & protocol for your site
 
 # Build settings
 remote_theme: jekyll/minima
